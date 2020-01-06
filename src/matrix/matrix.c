@@ -1,3 +1,14 @@
+/**
+ * \file matrix.c
+ * \brief Contient les fonctions 
+ * permettant respectivement de construire une matrice, initialiser une matrice et l'afficher 
+ * \author Majd BUTTY
+ * \version 1.0
+ * \date 6 janvier 2020
+ */
+
+
+
 #include "matrix.h"
 #include <stdio.h>
 #include <stdlib.h>
