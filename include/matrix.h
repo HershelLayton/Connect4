@@ -5,5 +5,5 @@ struct matrix_t {
 };
 
 struct matrix_t alloc(int, int);
-void init_matrix(struct matrix_t);
+void init_matrix(struct matrix_t *);
 void display_matrix(struct matrix_t);
