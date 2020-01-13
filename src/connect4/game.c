@@ -1,6 +1,5 @@
-#include "../../include/game.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "game.h"
+
 /**
  * @file game.c 
  * @brief contains the essential functions to play the game and chack if any player wins 
@@ -20,13 +19,12 @@
 
 int check_winner(struct matrix_t m, int i, int j){
 
-if(check_line(m, i, j) || check_column(m, i,j)
-    || checkDiagoAsc(m, i, j) || checkDiagoDesc(m, i, j))
-{
-    return 1;
-}
+        if(check_line(m, i, j) || check_column(m, i,j))
+        {
+            return 1;
+        }
 
-return 0;
+    return 0;
 
 }
 
@@ -40,7 +38,7 @@ int check_line(struct matrix_t m, int i, int j)
     /** test s'il y a 4 sur la même ligne **/
 
     pawn = m.data[i][j];
-    k = i-1;
+    k = j-1;
 
     while (k>=0 && m.data[i][k]==pawn)
     {
@@ -49,7 +47,7 @@ int check_line(struct matrix_t m, int i, int j)
 
     k = k+1;
 
-    l = i+1;
+    l = j+1;
 
     while (l<m.ncol && m.data[i][l] == pawn )
     {
@@ -79,16 +77,16 @@ int check_column(struct matrix_t m, int i, int j)
     /** test s'il y a 4 sur la même ligne **/
 
     pawn = m.data[i][j];
-    k = j-1;
+    k = i-1;
 
-    while (k>=0 && m.data[j][k]==pawn)
+    while (k>=0 && m.data[k][j]==pawn)
     {
         k--;
     }
 
     k = k+1;
 
-    l = j+1;
+    l = i+1;
 
     while (l<m.nrow && m.data[l][j] == pawn )
     {
@@ -96,7 +94,7 @@ int check_column(struct matrix_t m, int i, int j)
     }
     l= l-1;
 
-    /* si les 4 couleurs sont alignées */
+    /* si les 4 couleurs sont aliv o i d   p l a y ( s t r u c t    m a t r i x _ t   m,    i n t    p l a y e r )gnées */
 
     if (l-k+1 >=4)
     {
@@ -108,11 +106,11 @@ int check_column(struct matrix_t m, int i, int j)
     return 0;
 
 }
-
+/*
 int checkDiagoAsc(struct matrix_t m, int i, int j){
 
 
-    char pawn; /** color */
+    char pawn; 
     int k;
     int l;
     int cpt1;
@@ -120,7 +118,7 @@ int checkDiagoAsc(struct matrix_t m, int i, int j){
 
     pawn = m.data[i][j];
 
-     /* ascendingDiagonalCheck */
+     
     for (cpt1=3; cpt1<m.ncol; cpt1++){
         for ( cpt2=0; cpt2<m.nrow-3; cpt2++){
             if (m.data[cpt1][cpt2] == pawn && m.data[cpt1-1][cpt2+1] == pawn
@@ -137,7 +135,7 @@ int checkDiagoAsc(struct matrix_t m, int i, int j){
 int checkDiagoDesc(struct matrix_t m, int i, int j){
 
 
-    char pawn; /** color */
+    char pawn; 
     int k;
     int l;
     int cpt1;
@@ -145,7 +143,6 @@ int checkDiagoDesc(struct matrix_t m, int i, int j){
 
     pawn = m.data[i][j];
 
-    /* descendingDiagonalCheck */
     for (cpt1=3; cpt1<m.ncol; cpt1++){
         for (cpt2=3; cpt2<m.nrow; cpt2++){
             if (m.data[cpt1][cpt2] == pawn && m.data[cpt1-1][cpt2-1] == pawn 
@@ -156,7 +153,7 @@ int checkDiagoDesc(struct matrix_t m, int i, int j){
     }
     return 0;
 
-}
+}*/
 
 /**
  * fonction qui effectue un tour de jeu pour un des deux joueurs
@@ -165,38 +162,47 @@ int checkDiagoDesc(struct matrix_t m, int i, int j){
  * \return void
  * */
 
-void player(struct matrix_t m, int player){
+void play(struct matrix_t m, int player){
 
     int col;
     char color;
+    int row =0;
 
     if(player == 1)
     {
-        color = "R";
+        color = 'R';
     }
     else
     {
-        color = "Y";
+        color = 'Y';
     }
 
-    printf("Joueur : %d - A toi de jouer\n", player);
+    printf("Joueur : %d -> A toi de jouer!\n", player);
     printf("Choissisez la colonne de 1 à %d:  \n ", m.ncol);
 
-    scanf("Colonne: %d", &col);
+    scanf("%d", &col);
+    
+    col--;
 
-
-    int row =0;
-    if(m.data[row][col])
+    if(m.data[row][col] != '0')
     {   
         printf("Cette colonne est remplie\n");
+        play(m,player);
         return;
     }
-    while(m.data[row][col] == 0)
+    while(row < m.nrow && m.data[row][col] == '0' )
     {
         row++;
+        
     }
+    printf("%c\n",m.data[row-1][col]);
 
     m.data[row-1][col] = color;
+
+    if (check_winner(m, row-1, col))
+    {
+        m.ncol = 0;
+    }
 
 
 }

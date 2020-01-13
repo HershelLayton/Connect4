@@ -49,7 +49,7 @@ void display_matrix(struct matrix_t m){
     printf("Nombre de lignes: %d\n\n", m.nrow);
     printf("La matrice: \n\n");
     for (i=0; i < m.nrow; i++){
-            printf("%s ", m.data[i]);
+            printf(" %s ", m.data[i]);
             printf("\n");
     }
     printf("\n");
