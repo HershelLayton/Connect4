@@ -27,7 +27,7 @@ compile : $(BIN_DIR) $(BIN)
 
 #BINARIES
 $(BIN): $(OBJS) $(BIN_DIR)
-	$(CC) $^ $(LDFLAGS) $@ $(LIBFLAGS)
+	$(CC) -static $< $(LDFLAGS) $@ $(LIBFLAGS)
 
 #OBJECT
 $(OBJ_DIR)/%.o:
