@@ -1,10 +1,9 @@
 /**
- * \file matrix.c
- * \brief Contient les fonctions 
- * permettant respectivement de construire une matrice, initialiser une matrice et l'afficher 
- * \author Majd BUTTY
- * \version 1.0
- * \date 6 janvier 2020
+ * @file matrix.c
+ * @brief Contains functions that enables the user to allocate, initialize and display a matrix.
+ * @author Majd BUTTY
+ * @version 1.0
+ * @date 6 janvier 2020
  */
 
 
@@ -13,6 +12,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * @brief Allocates memory for a matrix.
+ * @param[in] Number of rows for the matrix.
+ * @param[in] Number of columns for the matrix.
+ * @return Allocated matrix.
+ */
 struct matrix_t alloc(int nrow, int ncol){
     struct matrix_t m;
     int i;
@@ -28,10 +33,19 @@ struct matrix_t alloc(int nrow, int ncol){
     return m;
 }
 
+/**
+ * @brief Initializes a matrix.
+ * @param[in] Matrix.
+ */
 void init_matrix(struct matrix_t * m){
     *m = alloc(0, 0);
 }
 
+
+/**
+ * @brief Displays a matrix.
+ * @param[in] Matrix.
+ */
 void display_matrix(struct matrix_t m){
     int i;
     printf("Nombre de colonnes: %d\n", m.ncol);
