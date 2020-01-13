@@ -6,6 +6,8 @@
  * @date 6 janvier 2020
  */
 
+
+
 struct matrix_t {
     char **data; /*!< The concrete matrix data. */
     int nrow; /*!< Number of rows */

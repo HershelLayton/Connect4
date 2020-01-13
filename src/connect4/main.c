@@ -1,6 +1,9 @@
+#include "../../include/game.h"
+#include <stdio.h>
+#include <stdlib.h>
 /**
  * @file game.c 
- * @brief The folder test our game
+ * @brief The main of the game
  * @author Aymen Benabderrahmane
  * @version 1.0
  * @date 6 janvier 2020
@@ -8,10 +11,19 @@
 
 int main(){
 
-    printf("===== Bienvenue dans notre jeu magnifique Connect 4======\n");
-
     int player = 1;
 
+    struct matrix_t mat;
+   
+    /* Matrix allocation */
+    mat = alloc(6, 7);
+    init_matrix(&mat);
+    display_matrix(mat);
+    
+
+    printf("===== Bienvenue dans notre magnifique jeu  Connect 4======\n");
+
+    /*
     while(check_winner(m, i, j))
     {
         player(m, player);
@@ -23,7 +35,7 @@ int main(){
             player = 1;    
         }
     }
-
+    */
 
     return 0;
 }

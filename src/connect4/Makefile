@@ -27,7 +27,18 @@ compile : $(BIN_DIR) $(BIN)
 
 #BINARIES
 $(BIN): $(OBJS)
-	$(CC) $^ $(LDFLAGS) $@ $(LIBFLAGS)
+	$(CC) -static $^ $(LDFLAGS) $@ $(LIBFLAGS)
+
+#OBJECT
+$(OBJ_DIR)/%.o:
+	$(CC) $(CFLAGS) $< -c -o $@
+
+$(OBJ_DIR)/main.o    : src/connect4/main.c     $(DEPS) $(OBJ_DIR)
+$(OBJ_DIR)/game.o   : src/connect4/ga
+
+#BINARIES
+$(BIN): $(OBJS)
+	$(CC) -static $^ $(LDFLAGS) $@ $(LIBFLAGS)
 
 #OBJECT
 $(OBJ_DIR)/%.o:
@@ -37,6 +48,11 @@ $(OBJ_DIR)/main.o    : src/connect4/main.c     $(DEPS) $(OBJ_DIR)
 $(OBJ_DIR)/game.o   : src/connect4/game.c     $(DEPS) $(OBJ_DIR)
 
 #OTHERS
+$(BIN_DIR):
+	mkdir $@
+
+$(OBJ_DIR):
+	mkdir $@
 $(BIN_DIR):
 	mkdir $@
 
