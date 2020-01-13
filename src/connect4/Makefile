@@ -42,3 +42,8 @@ $(BIN_DIR):
 
 $(OBJ_DIR):
 	mkdir $@
+$(BIN_DIR):
+	mkdir $@
+
+$(OBJ_DIR):
+	mkdir $@

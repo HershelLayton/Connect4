@@ -1,3 +1,6 @@
+#include "../../include/game.h"
+#include <stdio.h>
+#include <stdlib.h>
 /**
  * @file game.c 
  * @brief contains the essential functions to play the game and chack if any player wins 
@@ -112,15 +115,17 @@ int checkDiagoAsc(struct matrix_t m, int i, int j){
     char pawn; /** color */
     int k;
     int l;
+    int cpt1;
+    int cpt2;
 
     pawn = m.data[i][j];
 
-     // ascendingDiagonalCheck 
-    for (int i=3; i<m.ncol; i++){
-        for (int j=0; j<m.nrow-3; j++){
-            if (m.data[i][j] == pawn && m.data[i-1][j+1] == pawn
-                 && m.data[i-2][j+2] == pawn 
-                 && m.data[i-3][j+3] == pawn)
+     /* ascendingDiagonalCheck */
+    for (cpt1=3; cpt1<m.ncol; cpt1++){
+        for ( cpt2=0; cpt2<m.nrow-3; cpt2++){
+            if (m.data[cpt1][cpt2] == pawn && m.data[cpt1-1][cpt2+1] == pawn
+                 && m.data[cpt1-2][cpt2+2] == pawn 
+                 && m.data[cpt1-3][cpt2+3] == pawn)
                 return 1;
         }
     }
@@ -135,19 +140,21 @@ int checkDiagoDesc(struct matrix_t m, int i, int j){
     char pawn; /** color */
     int k;
     int l;
+    int cpt1;
+    int cpt2;
 
     pawn = m.data[i][j];
 
-    // descendingDiagonalCheck
-    for (int i=3; i<m.ncol; i++){
-        for (int j=3; j<m.nrow; j++){
-            if (m.data[i][j] == pawn && m.data[i-1][j-1] == pawn 
-                && m.data[i-2][j-2] == pawn && m.data[i-3][j-3] == pawn)
+    /* descendingDiagonalCheck */
+    for (cpt1=3; cpt1<m.ncol; cpt1++){
+        for (cpt2=3; cpt2<m.nrow; cpt2++){
+            if (m.data[cpt1][cpt2] == pawn && m.data[cpt1-1][cpt2-1] == pawn 
+                && m.data[cpt1-2][cpt2-2] == pawn && m.data[cpt1-3][cpt2-3] == pawn)
                 return 1;
         }
 
-        return 0;
     }
+    return 0;
 
 }
 
@@ -163,13 +170,13 @@ void player(struct matrix_t m, int player){
     int col;
     char color;
 
-    if(player == "1")
+    if(player == 1)
     {
-        color = "Red";
+        color = "R";
     }
     else
     {
-        color = "Yellow";
+        color = "Y";
     }
 
     printf("Joueur : %d - A toi de jouer\n", player);
