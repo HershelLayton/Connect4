@@ -26,7 +26,7 @@ all: compile
 compile : $(BIN_DIR) $(BIN)
 
 #BINARIES
-$(BIN): $(OBJS)
+$(BIN): $(OBJS) $(BIN_DIR)
 	$(CC) $^ $(LDFLAGS) $@ $(LIBFLAGS)
 
 #OBJECT

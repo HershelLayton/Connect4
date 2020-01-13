@@ -7,10 +7,11 @@
  */
 
 int main(){
-
+    int player = 1;
+    
     printf("===== Bienvenue dans notre jeu magnifique Connect 4======\n");
 
-    int player = 1;
+    
 
     while(check_winner(m, i, j))
     {

@@ -29,15 +29,15 @@ staticlib : $(STATIC_LIB)
 
 dynamiclib : $(DYN_LIB)
 #BINARIES
-$(BIN): $(OBJ_DIR)/testmatrix.o $(DYN_LIB) 
+$(BIN): $(OBJ_DIR)/testmatrix.o $(DYN_LIB) $(BIN_DIR)
 	$(CC) -o $@  $< $(LIBFLAGS)
 
 #LIBRARIES
-$(STATIC_LIB): $(OBJ_DIR)/matrix.o
-	$(AR) $@ $^
+$(STATIC_LIB): $(OBJ_DIR)/matrix.o $(LIB_DIR)
+	$(AR) $@ $<
 
-$(DYN_LIB): $(OBJ_DIR)/matrix.o
-	$(CC) $(LDFLAGS) $@ $^
+$(DYN_LIB): $(OBJ_DIR)/matrix.o $(LIB_DIR)
+	$(CC) $(LDFLAGS) $@ $<
 
 
 #OBJECT
