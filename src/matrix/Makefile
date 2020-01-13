@@ -12,13 +12,12 @@ DYN_LIB = $(LIB_DIR)/libmatrix.so
 #Macro
 CC      = gcc 
 CFLAGS  = -Wall -fPIC -Wextra -ansi -pedantic -I./$(DEP_DIR) 
-LDFLAGS = -shared -o
+LDFLAGS = -shared  -o
 RM      = rm -rf
 AR = ar rcs
 OBJS =  $(OBJ_DIR)/matrix.o
 DEPS =  $(DEP_DIR)/matrix.h
 
-.PHONY : compile
 
 #RULES
 all: staticlib dynamiclib testmatrix
@@ -29,8 +28,8 @@ staticlib : $(STATIC_LIB)
 
 dynamiclib : $(DYN_LIB)
 #BINARIES
-$(BIN): $(DYN_LIB) $(OBJ_DIR)/testmatrix.o
-	$(CC) $(CFLAGS) $@  $^ -lmatrix
+$(BIN): $(OBJ_DIR)/testmatrix.o $(DYN_LIB) 
+	$(CC) -o $@  $< -L./lib -lmatrix
 
 #LIBRARIES
 $(STATIC_LIB): $(OBJ_DIR)/matrix.o

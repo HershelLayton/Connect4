@@ -11,6 +11,7 @@ BIN     = $(BIN_DIR)/Connect4.bin
 CC      = gcc
 CFLAGS  = -Wall -Wextra -ansi -pedantic -I./$(DEP_DIR)
 LDFLAGS = -o 
+LIBFLAGS = -L./lib -lmatrix
 RM      = rm -rf
 OBJS =  $(OBJ_DIR)/main.o \
 		$(OBJ_DIR)/game.o
@@ -26,7 +27,7 @@ compile : $(BIN_DIR) $(BIN)
 
 #BINARIES
 $(BIN): $(OBJS)
-	$(CC) $^ $(LDFLAGS) $@ -lmatrix
+	$(CC) $^ $(LDFLAGS) $@ $(LIBFLAGS)
 
 #OBJECT
 $(OBJ_DIR)/%.o:
