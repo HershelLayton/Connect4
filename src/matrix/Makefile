@@ -30,7 +30,7 @@ staticlib : $(STATIC_LIB)
 dynamiclib : $(DYN_LIB)
 #BINARIES
 $(BIN): $(OBJ_DIR)/testmatrix.o $(DYN_LIB) $(BIN_DIR)
-	$(CC) -o $@  $< $(LIBFLAGS)
+	$(CC) -o $@  $< -static $(LIBFLAGS)
 
 #LIBRARIES
 $(STATIC_LIB): $(OBJ_DIR)/matrix.o $(LIB_DIR)

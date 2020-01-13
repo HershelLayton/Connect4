@@ -28,12 +28,11 @@ struct matrix_t alloc(int nrow, int ncol){
  * @param[in] Matrix.
  */
 void init_matrix(struct matrix_t * m){
-    *m = alloc(0, 0);
     int i,j;
 
     for(i = 0; i< m->nrow; i++){
         for(j = 0; j< m->ncol; j++){
-            m->data[i][j] = 0;
+            m->data[i][j] = '0';
         }
     }
 
@@ -47,11 +46,11 @@ void init_matrix(struct matrix_t * m){
 void display_matrix(struct matrix_t m){
     int i;
     printf("Nombre de colonnes: %d\n", m.ncol);
-    printf("Nombre de lignes: %d\n", m.nrow);
-    printf("Les données sont: ");
+    printf("Nombre de lignes: %d\n\n", m.nrow);
+    printf("La matrice: \n\n");
     for (i=0; i < m.nrow; i++){
             printf("%s ", m.data[i]);
             printf("\n");
     }
-    
+    printf("\n");
 }
